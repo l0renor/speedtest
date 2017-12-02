@@ -6,15 +6,14 @@ import java.util.concurrent.TimeUnit;
 public class Client {
 
         public static void main(String[] args) throws Exception {
-            sendTCP(10000,2);
-
+            sendTCP(1000,100);
 
         }
 
     public static void sendUDP()throws Exception{
 
-        int n = 100;
-        int k = 5;
+        int n = 1000;
+        int k = 100;
         byte[] buf = new byte[1400];
         Arrays.fill(buf,(byte)1);
         DatagramSocket sk;
@@ -28,9 +27,9 @@ public class Client {
             i++;
             DatagramPacket out = new DatagramPacket(buf, buf.length,hostAddress,4000);
             sk.send(out);
-            if(i%n == 0){
-                TimeUnit.MICROSECONDS.sleep(k);
-            }
+//            if(i%n == 0){
+//                TimeUnit.MILLISECONDS.sleep(k);
+//            }
 
         }
         double rate = (i/30)*1.4;
@@ -57,9 +56,9 @@ public class Client {
             i++;
             dOut.write(buf);
             dOut.flush();
-            if(i%n == 0){
-                TimeUnit.MICROSECONDS.sleep(k);
-            }
+//            if(i%n == 0){
+//                TimeUnit.MILLISECONDS.sleep(k);
+//            }
 
         }
         double rate = (i/30)*1.4;
